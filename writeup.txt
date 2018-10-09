@@ -1,0 +1,16 @@
+FOR SQL Injections:
+
+
+- use prepared statements with parameterized queries. If the developer first defines all SQL code and the passes in each parameter later, the database can effectively tell the different between data and code, and therefore not execute malicious injections. This can be achieved by adding placeholder names in commands, which are replaced by user input at a later time. 
+- use the princple of least privilege —> only allow necessary privileges, e.g. if information can be retrieved by SELECT statements only, then do not allow other prvileges such as DELETE. 
+- validate users through captchas etc. 
+- deal with errors correctly so that they are not sent to the web browser where an attacker can get feedback
+- validate input strings, ensure they cannot include special characters like ' or \
+- encrypt sensitive data with something like sha256 (not md5)
+
+FOR CSRF:
+- use tokens to validate requests. 
+- intermittent logging out of users
+- two-step verification for users
+ensure the origin the request is coming from and going to is the same. Check the origin header and referer header to ensure the site is correct. 
+- personal tips like logging off after using website, do not allow browser to save username/passwords
