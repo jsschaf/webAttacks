@@ -1,16 +1,9 @@
 FOR SQL Injections:
+Dear Bungle Developers:
+There are several ways you can protect your website against sql injection attacks. Firstly, I recommend using prepared statements with parameterized queries. If you first define all of your SQL code for website, and then pass in each parameter (such as username) later, the database will be able to effectively distinguish between data and code, and therefore malicious injections will not be executed. To do this, you can use placeholder names/variables in commands, and later replace them with user input. Another way to improve security would be to validate input strings to the website and ensure they cannot include special characters like ‘ or \. This could involve disallowing users to use these characters in their usernames or passwords, and then whenever these characters are entered, the website can reject the input. In addition, the idea of hashing input was a good one, however md5 is not a very secure hash and can be easily broken, I recommend using something like sha256 instead. Additionally, if the page itself deals with errors internally so that they are not send to the web browser where an attacker can get feedback, this will make it harder for an attacker to advance and continue targeting your page. You could also use the principle of least privilege, which suggests only allowing the necessary privileges on your website. For example, if information needs only to be retrieved through SELECT statements, you could disallow other privileges such as INSERT or DELETE. Lastly, by validating users through the use of captchas etc, you as developers can ensure that bots are not trying to attack your website, and you only have real people actually trying to use Bungle.
 
-
-- use prepared statements with parameterized queries. If the developer first defines all SQL code and the passes in each parameter later, the database can effectively tell the different between data and code, and therefore not execute malicious injections. This can be achieved by adding placeholder names in commands, which are replaced by user input at a later time. 
-- use the princple of least privilege —> only allow necessary privileges, e.g. if information can be retrieved by SELECT statements only, then do not allow other prvileges such as DELETE. 
-- validate users through captchas etc. 
-- deal with errors correctly so that they are not sent to the web browser where an attacker can get feedback
-- validate input strings, ensure they cannot include special characters like ' or \
-- encrypt sensitive data with something like sha256 (not md5)
+FOR XSS:
 
 FOR CSRF:
-- use tokens to validate requests. 
-- intermittent logging out of users
-- two-step verification for users
-ensure the origin the request is coming from and going to is the same. Check the origin header and referer header to ensure the site is correct. 
-- personal tips like logging off after using website, do not allow browser to save username/passwords
+
+The concept of using tokens to protect against CSRF attacks is a good idea. However, if the server uses two tokens, one sent as a cookie and another placed in a hidden form field, the website will be more secure. In this case, two tokens are randomly generated, and both must be sent back to the sever when a client submits a form. The client will send the cookie token as a cookie, and the hidden token inside the form data automatically. If a request does not include both tokens, Bungle can disallow the request. It is important to not implement the tokens as they were in part 3.1, as the token was visible to attackers on the home page of Bungle. Another way to protect against CSRF attacks is to have Bungle intermittenly log users out of the website. This will mean that if they accidentally click on a malicious page that is conducting a CSRF attack, there is a greater likelihood that they are not already logged in to the page, and therefore none of their data will be compromised. Bungle could also protect itself by informing users of best practices, such as logging off after use, checking what username someone is logged in as, or even recommended that users do not allow their browser to save usernames or passwords for future use. 
